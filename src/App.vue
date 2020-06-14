@@ -1,13 +1,18 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view />
+    <Tabbar></Tabbar>
   </div>
 </template>
-
+<script>
+import Tabbar from "components/content/TabBarView";
+export default {
+  name: "App",
+  components: {
+    Tabbar
+  }
+};
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
