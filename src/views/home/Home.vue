@@ -1,36 +1,36 @@
 <template>
-    <div>
-        <h2>首页</h2>
-        账号：<input type="text" v-model="account" @input="changeValue">
-        账号：<input type="password" v-model="password" @input="changepwd">
-       <input type="submit" value="登录" @click="login">
-    </div>
+  <div id="home">
+    <nav-bar class="home-nav-bar">
+      <div slot="navbar-center">购物街</div>
+    </nav-bar>
+    <swriper-view></swriper-view>
+  </div>
 </template>
 <script>
-
-    export default{
-        name:"Home",
-        data(){
-            return{
-                account:'',
-                password:''
-            }
-        },
-    methods:{
-        changeValue(){
-            console.log(this.account)
-        },
-        changepwd(){
-            console.log(this.account)
-        },
-        login(){
-            if(this.account=='zhangsan'&&this.password=='abc')
-            this.$router.push('/profile?name=zhangsan')
-        }
-    }
-       
-    }
+import NavBar from "components/common/navbar/Navbar";
+import SwriperView from "./homechildren/SwiperView";
+import { getHomeMultidata } from "network/homerequest";
+export default {
+  name: "Home",
+  components: {
+    NavBar,
+    SwriperView
+  },
+  data() {
+    return {};
+  },
+  // 生命周期函数，组件在创建时执行
+  created() {
+    getHomeMultidata().then(res => {
+      console.log(res);
+    });
+  },
+  methods: {}
+};
 </script>
 <style scoped>
-
+.home-nav-bar {
+  background-color: red;
+  color: #fff;
+}
 </style>
